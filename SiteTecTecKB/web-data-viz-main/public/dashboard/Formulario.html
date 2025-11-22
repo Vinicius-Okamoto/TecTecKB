@@ -162,8 +162,7 @@
   function enviar() {
     if (iptsom.value == '' || iptexperiencia.value == '' || iptcomprar.value == '' || iptmotivo.value == '' || iptcustomizar.value == '' || iptelementos.value == '' || iptlayout.value == '' || ipttendencia.value == '') {
       alert(`Selecione todos os campos`)
-    }
-    if (iptIdade.value == '' || iptIdade.value <= 10) {
+    } else if (iptIdade.value == '' || iptIdade.value <= 10) {
       alert(`Insira uma idade valida`)
     } else {
       idadeVar = Number(iptIdade.value)
@@ -205,13 +204,13 @@
               "Recebendo os dados...";
 
             setTimeout(() => {
-              window.location = "login.html";
+              window.location = "dashboard.html";
             }, "2000");
 
             limparFormulario();
             finalizarAguardar();
           } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
+            throw "Houve um erro ao tentar realizar realizar o formulário!";
           }
         })
         .catch(function (resposta) {
