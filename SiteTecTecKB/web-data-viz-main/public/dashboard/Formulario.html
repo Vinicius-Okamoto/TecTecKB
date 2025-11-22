@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário</title>
+
+  <link rel="stylesheet" href="./../css/estiloFormulario.css">
+  <link rel="icon" href="./assets/icon/favicon2.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+
+  <div class="janela">
+    <div class="header-left">
+      <h1>TecTecKB</h1>
+
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      </div>
+
+      <div class="btn-nav-white">
+        <a href="./grafico.html">
+          <h3>Gráficos</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav">
+
+        <h3>Formulário</h3>
+
+      </div>
+
+      <div class="btn-nav-white">
+        <a href="./mural.html">
+          <h3>Mural de Avisos</h3>
+        </a>
+      </div>
+
+      <div class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+      </div>
+
+    </div>
+
+    <div class="dash">
+      <div id="alerta">
+      </div>
+
+      <div class="btns-dash" id="btnAquario">
+        <div class="container">
+          <div class="caixa">
+            <div class="formulariotxt">
+
+              <h2>Formulário</h2>
+              Informe a sua idade (em anos) <input type="number" id="iptIdade">
+              <br><br>
+              <p><b>1-Qual tipo de som você prefere em um teclado?</b></p>
+              <select name="som" id="iptsom">
+                <option value="">Selecione sua respota</option>
+                <option value="Silencioso"> Silencioso</option>
+                <option value="Levemente audível"> Levemente audível</option>
+                <option value="Clicky / Barulhento"> Clicky / Barulhento</option>
+                <option value="Thock"> Thock</option>
+              </select>
+              <br><br>
+              <b>2-Qual experiência você busca ao digitar? </b><br>
+              <select name="experiencia" id="iptexperiencia">
+                <option value="">Selecione sua respota</option>
+                <option value="Conforto">Conforto</option>
+                <option value="Agilidade"> Agilidade</option>
+                <option value="Feedback tátil"> Feedback tátil</option>
+                <option value="Prazer sonoro"> Prazer sonoro</option>
+                <option value="Personalização"> Personalização (keycaps, iluminação, macros)</option>
+              </select>
+              <br><br>
+              <b>3-Onde você costuma comprar seu teclado?</b><br>
+              <select name="comprar" id="iptcomprar">
+                <option value="">Selecione sua respota</option>
+                <option value="Lojas físicas no Brasil"> Lojas físicas no Brasil</option>
+                <option value="Lojas online no Brasil"> Lojas online no Brasil</option>
+                <option value="Importado da China (AliExpress, shoope, sites internacionais)"> Importado da China
+                  (AliExpress, shoope, sites internacionais)</option>
+                <option value="Importado sem ser da China (Lojas próprias, Amazon, sites internacionais)"> Importado sem
+                  ser da China (Lojas próprias, Amazon, sites internacionais)</option>
+              </select>
+              <br><br>
+              <b>4-Qual o principal motivo de comprar importado?</b><br>
+              <select name="motivo" id="iptmotivo">
+                <option value="">Selecione sua respota</option>
+                <option value="Preço"> Preço</option>
+                <option value="Variedade de switches/keycaps"> Variedade de switches/keycaps</option>
+                <option value="Qualidade ou marcas específicas"> Qualidade ou marcas específicas</option>
+                <option value="Curiosidade/coleção"> Curiosidade/coleção</option>
+              </select>
+              <br><br>
+              <b>5-Você gosta de customizar seu teclado?</b><br>
+              <select name="customizar" id="iptcustomizar">
+                <option value="">Selecione sua respota</option>
+                <option value="Sim, sempre"> Sim, sempre</option>
+                <option value="Às vezes"> Às vezes</option>
+                <option value="Não"> Não</option>
+              </select>
+              <br><br>
+              <b>6-Quais elementos você mais customiza?</b><br>
+              <select name="elementos" id="iptelementos">
+                <option value="">Selecione sua respota</option>
+                <option value="Switches"> Switches</option>
+                <option value="Keycaps"> Keycaps</option>
+                <option value="Stabilizers"> Stabilizers</option>
+                <option value="LEDs/iluminação"> LEDs/iluminação</option>
+                <option value="Layout/firmware"> Layout/firmware</option>
+                <option value="Estética"> Estética</option>
+              </select>
+              <br><br>
+              <b>7-Qual é o seu layout de teclado preferido?</b><br>
+              <select name="layout" id="iptlayout">
+                <option value="">Selecione sua respota</option>
+                <option value="ANSI"> ANSI</option>
+                <option value="ISO"> ISO</option>
+                <option value="65%"> 65%</option>
+                <option value="75%/TKL"> 75%/TKL</option>
+                <option value="Full"> Full</option>
+              </select>
+              <br><br>
+              <b>8-Qual tendência atual de teclado você mais gosta?</b><br>
+              <select name="tendencia" id="ipttendencia">
+                <option value="">Selecione sua respota</option>
+                <option value="Split / ergonômicos"> Split / ergonômicos</option>
+                <option value="Teclados magnéticos"> Teclados magnéticos</option>
+                <option value="Hot-swappable switches"> Hot-swappable switches</option>
+                <option value="RGB e iluminação customizável"> RGB e iluminação customizável</option>
+              </select>
+              <br>
+              <button class="botao" onclick="enviar()">Enviar</button>
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="graficos">
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<script>
+  var idadeVar = 0
+  var somVar = ''
+  var experienciaVar = ''
+  var comprarVar = ''
+  var motivoVar = ''
+  var customizarVar = ''
+  var elementosVar = ''
+  var layoutVar = ''
+  var tendenciaVar = ''
+  function enviar() {
+    if (iptsom.value == '' || iptexperiencia.value == '' || iptcomprar.value == '' || iptmotivo.value == '' || iptcustomizar.value == '' || iptelementos.value == '' || iptlayout.value == '' || ipttendencia.value == '') {
+      alert(`Selecione todos os campos`)
+    }
+    if (iptIdade.value == '' || iptIdade.value <= 10) {
+      alert(`Insira uma idade valida`)
+    } else {
+      idadeVar = Number(iptIdade.value)
+      somVar = iptsom.value
+      experienciaVar = iptexperiencia.value
+      comprarVar = iptcomprar.value
+      motivoVar = iptmotivo.value
+      customizarVar = iptcustomizar.value
+      elementosVar = iptelementos.value
+      layoutVar = iptlayout.value
+      tendenciaVar = ipttendencia.value
+
+      fetch("/Dashboard/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          idadeServer: idadeVar,
+          somServer: somVar,
+          experienciaServer: experienciaVar,
+          comprarServer: comprarVar,
+          motivoServer: motivoVar,
+          customizarServer: customizarVar,
+          elementosServer: elementosVar,
+          layoutServer: layoutVar,
+          tendenciaServer: tendenciaVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            mensagem_erro.innerHTML =
+              "Recebendo os dados...";
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+    }
+  }
+</script>
+
+</html>
