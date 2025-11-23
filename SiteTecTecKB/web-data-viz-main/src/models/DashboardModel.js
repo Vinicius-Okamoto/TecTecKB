@@ -2,10 +2,10 @@ var database = require("../database/config")
 
 function listar() {
     var instrucao = `
-        SELECT * FROM respostas;
-        SELECT COUNT(idade) FROM respostas WHERE idade <= 25;
-        SELECT COUNT(idade) FROM respostas WHERE idade > 25 and idade <= 40;
-        SELECT COUNT(idade) FROM respostas WHERE idade > 40;
+        SELECT
+        (SELECT COUNT(idade) FROM respostas WHERE idade <= 25) as menor25,
+        (SELECT COUNT(idade) FROM respostas WHERE idade > 25 and idade <= 40) as de25a40,
+        (SELECT COUNT(idade) FROM respostas WHERE idade > 40) as maior40;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
