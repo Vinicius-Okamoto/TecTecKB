@@ -98,35 +98,35 @@
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-// const ctx = document.getElementById('graficoIdade');
+  // const ctx = document.getElementById('graficoIdade');
 
-//   new Chart(ctx, {
-//     type: 'doughnut',
-//     data: {
-//       labels: [
-//         'Red',
-//         'Blue',
-//         'Yellow'
-//       ],
-//       datasets: [{
-//         label: 'My First Dataset',
-//         data: [300, 50, 100],
-//         backgroundColor: [
-//           'rgb(255, 99, 132)',
-//           'rgb(54, 162, 235)',
-//           'rgb(255, 205, 86)'
-//         ],
-//         hoverOffset: 4
-//       }]
-//     },
-//     options: {
-//       scales: {
-//         y: {
-//           beginAtZero: true
-//         }
-//       }
-//     }
-//   });
+  //   new Chart(ctx, {
+  //     type: 'doughnut',
+  //     data: {
+  //       labels: [
+  //         'Red',
+  //         'Blue',
+  //         'Yellow'
+  //       ],
+  //       datasets: [{
+  //         label: 'My First Dataset',
+  //         data: [300, 50, 100],
+  //         backgroundColor: [
+  //           'rgb(255, 99, 132)',
+  //           'rgb(54, 162, 235)',
+  //           'rgb(255, 205, 86)'
+  //         ],
+  //         hoverOffset: 4
+  //       }]
+  //     },
+  //     options: {
+  //       scales: {
+  //         y: {
+  //           beginAtZero: true
+  //         }
+  //       }
+  //     }
+  //   });
 
 
   // Função chamada ao carregar a página para obter e processar os dados
@@ -134,50 +134,48 @@
     // Aqui seria a função que obteria os dados do banco de dados
     // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
-    fetch('/Dashboard/obterDados')
-    .then(function(response){
-      return response.json();
-    })
-    .then(function(data){
-      plotarGraficoIdade(data);
-    })
-    .catch(function(err){
-      console.log(err);
-    })
+    fetch('/Dashboard/listar')
+      .then(function (response) {
+        return response.json();
+        plotarGraficoIdade(response);
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
 
-    plotarGraficoDonut(dados)
-    plotarGraficoIdade(dados)
   }
-  function plotarGraficoIdade(dados) {
+  function plotarGraficoIdade(response) {
     var ctx = document.getElementById('graficoIdade');
 
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
-      datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+    console.log(response)
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
         ],
-        hoverOffset: 4
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        datasets: [{
+          label: 'My First Dataset',
+          data: [300, 50, 100],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
-    }
-  });
+    });
   }
   // Função para plotar o gráfico de linha
   function plotarGraficoLinha(dados) {

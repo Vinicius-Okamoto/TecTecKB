@@ -4,14 +4,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background-color: navy; */
-  /* background-color: navy; */
   background-image: radial-gradient(circle, navy, black);
 }
 
 .janela {
   display: flex;
-  /* width: 100vw; */
 }
 
 .header-left a {
@@ -31,7 +28,6 @@ body {
   justify-content: space-evenly;
   align-items: center;
   border-right: 3px solid #32b9cd;
-  /* background-color: #212124; */
   background-image: radial-gradient(circle, navy, black);
 }
 
@@ -170,13 +166,12 @@ body {
 
 .kpi {
     display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 colunas */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
   border: 0;
   border-radius: 15px;
   background-color: rgba(128, 128, 128, 0.144);
-  /* background: transparent; */
   backdrop-filter: blur(20px);
   margin: 20px;
 }
