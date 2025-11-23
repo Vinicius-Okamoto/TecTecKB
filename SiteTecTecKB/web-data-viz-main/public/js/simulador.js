@@ -14,6 +14,7 @@ function trocar() {
     if (rodada > 5) {
         rodada = 0
     }
+    iptTexto5.focus();
 }
 
 function validar() {
@@ -26,4 +27,5 @@ function validar() {
     } else {
         alert('Que pena, você digitou incorretamente, tente novamente.')
     }
+    iptTexto5.focus();
 }

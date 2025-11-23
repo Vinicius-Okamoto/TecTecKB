@@ -4,10 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exemplo de como Plotar Gráficos</title>
+  <title>Plotar Gráficos</title>
+
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="./../css/grafico.css">
+
+  <script src="../js/sessao.js"></script>
+  <script src="../js/alerta.js"></script>
 </head>
 
 <body onload="obterDados()" onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
@@ -91,8 +95,60 @@
 
 </html>
 <script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-  const ctx = document.getElementById('graficoIdade');
+// const ctx = document.getElementById('graficoIdade');
+
+//   new Chart(ctx, {
+//     type: 'doughnut',
+//     data: {
+//       labels: [
+//         'Red',
+//         'Blue',
+//         'Yellow'
+//       ],
+//       datasets: [{
+//         label: 'My First Dataset',
+//         data: [300, 50, 100],
+//         backgroundColor: [
+//           'rgb(255, 99, 132)',
+//           'rgb(54, 162, 235)',
+//           'rgb(255, 205, 86)'
+//         ],
+//         hoverOffset: 4
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
+
+
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    // Aqui seria a função que obteria os dados do banco de dados
+    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+
+    fetch('/Dashboard/obterDados')
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(data){
+      plotarGraficoIdade(data);
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+
+    plotarGraficoDonut(dados)
+    plotarGraficoIdade(dados)
+  }
+  function plotarGraficoIdade(dados) {
+    var ctx = document.getElementById('graficoIdade');
 
   new Chart(ctx, {
     type: 'doughnut',
@@ -121,58 +177,7 @@
       }
     }
   });
-
-  // Função chamada ao carregar a página para obter e processar os dados
-  function obterDados() {
-    // Aqui seria a função que obteria os dados do banco de dados
-    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
-
-    // fetch('/obterDados')
-    // .then(function(response){
-    //   return response.json();
-    // })
-    // .then(function(data){
-    //   plotarGraficoLinha(data);
-    //   plotarGraficoBarra(data);
-    // })
-    // .catch(function(err){
-    //   console.log(err);
-    // })
-
-    // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-    var dados = [{
-      jogador: 'Endrick',
-      votos: 10
-    },
-    {
-      jogador: 'João',
-      votos: 5
-    },
-    {
-      jogador: 'Maria',
-      votos: 15
-    },
-    {
-      jogador: 'José',
-      votos: 20
-    },
-    {
-      jogador: 'Pedro',
-      votos: 25
-    },
-    {
-      jogador: 'Ana',
-      votos: 30
-    }]
-
-    // Chamando a função para plotar o gráfico de linha com os dados
-    plotarGraficoLinha(dados);
-    // Chamando a função para plotar o gráfico de barra com os dados
-    plotarGraficoBarra(dados)
-
-    plotarGraficoDonut(dados)
   }
-
   // Função para plotar o gráfico de linha
   function plotarGraficoLinha(dados) {
 
@@ -203,75 +208,6 @@
             'rgba(255, 99, 132, 1)', // Cor da borda das linhas
           ],
           borderWidth: 1 // Largura da borda das linhas
-        }]
-      },
-    });
-  }
-
-  // Função para plotar o gráfico de barra
-
-  function plotarGraficoBarra(dados) {
-
-    var votos = [];
-    var jogadores = [];
-
-    // Preenchendo os arrays com os dados
-    for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
-    }
-
-    // Capturando o elemento canvas pelo id 
-    var ctx = document.getElementById('barra').getContext('2d');
-    // Criando o gráfico de barra usando o Chart.js
-    var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
-        datasets: [{
-          label: 'Votos', // Nome do conjunto de dados
-          data: votos, // Dados dos votos
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)', // Cor da borda das barras
-          ],
-          borderWidth: 1 // Largura da borda das barras
-        }]
-      },
-    });
-  }
-
-  // Função para plotar o gráfico de barra
-  function plotarGraficoBarra(dados) {
-
-    var votos = [];
-    var jogadores = [];
-
-    // Preenchendo os arrays com os dados
-    for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
-    }
-
-    // Capturando o elemento canvas pelo id 
-    var ctx = document.getElementById('barra').getContext('2d');
-    // Criando o gráfico de barra usando o Chart.js
-    var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
-        datasets: [{
-          label: 'Votos', // Nome do conjunto de dados
-          data: votos, // Dados dos votos
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)', // Cor da borda das barras
-          ],
-          borderWidth: 1 // Largura da borda das barras
         }]
       },
     });

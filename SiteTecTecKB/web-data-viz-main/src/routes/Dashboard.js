@@ -8,6 +8,10 @@ router.post("/cadastrar", function (req, res) {
     DashboardController.cadastrar(req, res);
 });
 
+// router.post("/obterDados", function (req, res) {
+//     DashboardController.obterDados(req, res);
+// });
+
 router.get("/listar", function (req, res) {
     // função a ser chamada quando acessar /carros/listar
     DashboardController.listar(req, res);
