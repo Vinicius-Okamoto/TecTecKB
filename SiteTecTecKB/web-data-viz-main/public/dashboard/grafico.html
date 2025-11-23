@@ -47,14 +47,14 @@
       <div id="alerta">
       </div>
       <div class="btns-dash">
-        <div class="container-graficos">
+        <!-- <div class="container-graficos"> -->
           <div class="kpi">
-
+            <p id="mediaIdade">kpi</p>
           </div>
-          <div class="kpi">
+          <!-- <div class="kpi">
 
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
       </div>
 
       <div class="btns-dash">
@@ -94,7 +94,27 @@
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-  window.onload = obterDados;
+  // window.onload = obterDados;
+  // window.onload = mostrarKpi();
+    window.onload = function () {
+      obterDados();
+      mostrarKpi();
+    }
+
+  function mostrarKpi() {
+    fetch('/Dashboard/kpi')
+      .then(function (mostrarkpi) {
+        return mostrarkpi.json();
+      })
+      .then(function (data) {
+     const media = Number(data[0].mediaIdade); 
+      document.getElementById("mediaIdade").innerHTML =
+        `Idade média: <b>${media.toFixed(1)}</b>`;
+  })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpi:", error);
+      });
+  }
 
   // Função chamada ao carregar a página para obter e processar os dados
   function obterDados() {
@@ -113,10 +133,13 @@
       ]);
   })
       .catch(function (error) {
-        console.error("Erro ao carregar idades:", error);
+        console.error("Erro no hora de carregar as idades:", error);
       });
 
   }
+
+    
+
   function plotarGraficoIdade(response) {
     var ctx = document.getElementById('graficoIdade');
 

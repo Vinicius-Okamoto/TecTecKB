@@ -15,4 +15,9 @@ router.get("/listar", function (req, res) {
     // função a ser chamada quando acessar /carros/listar
     DashboardController.listar(req, res);
 });
+
+router.get("/kpi", function (req, res) {
+    // função a ser chamada quando acessar /carros/listar
+    DashboardController.kpi(req, res);
+});
 module.exports = router;

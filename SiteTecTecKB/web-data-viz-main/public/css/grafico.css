@@ -165,7 +165,9 @@ body {
 }
 
 .kpi {
-    display: grid;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
@@ -174,7 +176,16 @@ body {
   background-color: rgba(128, 128, 128, 0.144);
   backdrop-filter: blur(20px);
   margin: 20px;
+  text-align: center;
+}
+.kpi p {
+  color: white;
+  text-align: center;
+  font-size: 30px;
 }
 .tamanho {
   height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
