@@ -117,12 +117,6 @@ body {
     padding: 30px 0;
 }
 
-.grafico .canvas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .container-grafico1 {
   display: grid;
   gap: 20px;
@@ -135,8 +129,9 @@ body {
 }
 
 .container-graficos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   gap: 20px;
   padding: 20px;
   border: 0;
@@ -144,13 +139,33 @@ body {
   background-color: rgba(128, 128, 128, 0.144);
   backdrop-filter: blur(20px);
   margin: 20px;
-  
 }
 
-.container-graficos canvas  {
-  width: 400px !important;
-  height: 400px !important;
-  margin: auto;
+.containerRespostasColuna {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.containerRespostas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 400px;
+  width: 100%;
+}
+
+.containerCanvas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #69b3de2b;
+  border-radius: 10px;
+  padding: 30px;
+  color: white;
 }
 
 .dash {
@@ -189,3 +204,4 @@ body {
   flex-direction: column;
   align-items: center;
 }
+

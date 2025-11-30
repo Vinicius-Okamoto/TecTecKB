@@ -16,12 +16,13 @@
 </head>
 
 <!-- <body onload="obterDados(); validarSessao(); atualizacaoPeriodica()" style="background-color: #161618;"> -->
+
 <body style="background-color: #161618;">
   <!-- Chamando a função obterDados ao carregar a página -->
 
   <div class="janela">
     <div class="header-left">
-      <h1>TecTecKB</h1> 
+      <h1>TecTecKB</h1>
 
       <div class="hello">
         <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -47,44 +48,47 @@
       <div id="alerta">
       </div>
       <div class="btns-dash">
-        <!-- <div class="container-graficos"> -->
-          <div class="kpi">
-            <p id="mediaIdade">kpi</p>
-          </div>
-          <!-- <div class="kpi">
 
-          </div> -->
-        <!-- </div> -->
+        <div class="kpi">
+          <p id="mediaIdade">kpi</p>
+        </div>
       </div>
 
       <div class="btns-dash">
+
         <div class="container-grafico1">
           <div class="tamanho">
             <canvas id="graficoIdade" style="width: 500px; height: 500px;"></canvas>
           </div>
         </div>
 
-        <div class="btns-dash" id="btnAquario">
-          <!-- Título para o gráfico de linhas -->
+        <div class="container-graficos">
 
-          <div class="graficos">
-            <div class="container-graficos">
-              <canvas id="meuGrafico1"></canvas>
-              <canvas id="meuGrafico2"></canvas>
-              <canvas id="meuGrafico3"></canvas>
-              <canvas id="meuGrafico4"></canvas>
-
-              <canvas id="meuGrafico5"></canvas>
-              <canvas id="meuGrafico6"></canvas>
-              <canvas id="meuGrafico7"></canvas>
-              <canvas id="meuGrafico8"></canvas>
+          <div class="containerRespostasColuna">
+            <div class="containerRespostas">
+              <div class="containerCanvas">
+                Tipo de som preferido
+                <canvas id="grafico1"></canvas>
+              </div>
+              <div class="containerCanvas">
+                Experiência mais buscada
+                <canvas id="grafico2"></canvas>
+              </div>
+            </div>
+              <br>
+            <div class="containerRespostas">
+              <div class="containerCanvas">
+                Onde costumam comprar o teclado
+              <canvas id="grafico3"></canvas>
+              </div>
+              <div class="containerCanvas">
+                Principal motivo de comprar importado
+              <canvas id="grafico4"></canvas>
+              </div>
             </div>
           </div>
-
-
         </div>
-        <div id="graficos">
-        </div>
+
       </div>
 
 
@@ -96,10 +100,10 @@
 
   // window.onload = obterDados;
   // window.onload = mostrarKpi();
-    window.onload = function () {
-      obterDados();
-      mostrarKpi();
-    }
+  window.onload = function () {
+    obterDados();
+    mostrarKpi();
+  }
 
   function mostrarKpi() {
     fetch('/Dashboard/kpi')
@@ -107,10 +111,10 @@
         return mostrarkpi.json();
       })
       .then(function (data) {
-     const media = Number(data[0].mediaIdade); 
-      document.getElementById("mediaIdade").innerHTML =
-        `Idade média: <b>${media.toFixed(1)}</b>`;
-  })
+        const media = Number(data[0].mediaIdade);
+        document.getElementById("mediaIdade").innerHTML =
+          `Idade média: <b>${media.toFixed(1)}</b>`;
+      })
       .catch(function (error) {
         console.error("Erro na hora de carregar kpi:", error);
       });
@@ -126,19 +130,19 @@
         return response.json();
       })
       .then(function (data) {
-     plotarGraficoIdade([
-        data[0].menor25,
-        data[0].de25a40,
-        data[0].maior40
-      ]);
-  })
+        plotarGraficoIdade([
+          data[0].menor25,
+          data[0].de25a40,
+          data[0].maior40
+        ]);
+      })
       .catch(function (error) {
         console.error("Erro no hora de carregar as idades:", error);
       });
 
   }
 
-    
+
 
   function plotarGraficoIdade(response) {
     var ctx = document.getElementById('graficoIdade');
@@ -157,66 +161,93 @@
           label: 'My First Dataset',
           data: response,
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#287BBA', '#333480', '#2955A1'
           ],
           hoverOffset: 20
         }]
       },
       options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+    
       }
     });
   }
 
-  function plotarGraficoDonut(idCanvas, valores, cores, nomes) {
+  // grafico respostas
 
-    const ctx2 = document.getElementById(idCanvas).getContext('2d');
+  const ctx1 = document.getElementById('grafico1');
 
-    const data = {
-      labels: nomes,
+  new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+      labels: ['Silencioso', 'Levemente audível', 'Clicky / Barulhento', 'Thock'],
       datasets: [{
-        data: valores,
-        backgroundColor: cores
+        label: '# of Votes',
+        data: [12, 19, 3, 5],
+        borderWidth: 1,
+        backgroundColor: ['#1BF7F7', '#333480', '#2955A1', '#287BBA']
       }]
-    };
-    const options = {
-      radius: 250,
-      plugins: {
-        legend: {
-          position: 'right',
-          labels: {
-            font: {
-              family: 'Poppins',
-              size: 40
-            },
-            boxWidth: 20,
-            padding: 15
-          }
-        },
+    },
+    options: {  
+      plugin: {
+        title: {
+                display: true,
+                text: 'Custom Chart Title',
+            }
       }
-    };
+    }
+  });
 
-    const ctx = document.getElementById(idCanvas).getContext('2d');
+  const ctx2 = document.getElementById('grafico2');
 
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: data,
-      options: options
-    });
-  }
+  new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+      labels: ['Conforto', 'Agilidade', 'Feedback tátil', 'Prazer sonoro', 'Personalização'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 3],
+        borderWidth: 1,
+        backgroundColor: ['#1BF7F7', '#333480', '#2955A1', '#287BBA', '#21A6CE']
+      }]
+    },
+    options: {
 
-  plotarGraficoDonut('meuGrafico1', [10, 20, 30, 15], ['#1BF7F7', '#333480', '#2955A1', '#287BBA'], ['Silencioso', 'Levemente audível', 'Clicky / Barulhento', 'Thock']);
-  plotarGraficoDonut('meuGrafico2', [5, 15, 25, 14, 20], ['#1BF7F7', '#333480', '#2955A1', '#287BBA', '#21A6CE'], ['Conforto', 'Agilidade', 'Feedback tátil', 'Prazer sonoro', 'Personalização']);
-  plotarGraficoDonut('meuGrafico3', [10, 20, 30, 15], ['#1BF7F7', '#333480', '#2955A1', '#287BBA'], ['Lojas físicas no Brasil', 'Lojas online no Brasil', 'Importado da China', 'Importado sem ser da China']);
-  plotarGraficoDonut('meuGrafico4', [10, 20, 30, 15], ['#1BF7F7', '#333480', '#2955A1', '#287BBA'], ['Preço', 'Variedade de switches/keycaps', 'Qualidade ou marcas específicas', 'Curiosidade/coleção']);
-  plotarGraficoDonut('meuGrafico5', [5, 15, 25], ['#1BF7F7', '#333480', '#2955A1'], ['Sim, sempre', 'Às vezes', 'Não']);
-  plotarGraficoDonut('meuGrafico6', [5, 15, 25, 14, 20, 15], ['#1BF7F7', '#333480', '#2955A1', '#287BBA', '#21A6CE', '#02386E'], ['Switches', 'Keycaps', 'Stabilizers', 'LEDs/iluminação', 'Layout/firmware', 'Estética']);
-  plotarGraficoDonut('meuGrafico7', [5, 15, 25, 14, 20], ['#1BF7F7', '#333480', '#2955A1', '#287BBA', '#21A6CE'], ['ANSI', 'ISO', '65%', '75%/TKL', 'Full']);
-  plotarGraficoDonut('meuGrafico8', [10, 20, 30, 15], ['#1BF7F7', '#333480', '#2955A1', '#287BBA'], ['Split / ergonômicos', 'Teclados magnéticos', 'Hot-swappable switches', 'RGB e iluminação customizável']);
+    }
+  });
+
+const ctx3 = document.getElementById('grafico3');
+
+  new Chart(ctx3, {
+    type: 'doughnut',
+    data: {
+      labels: ['Lojas físicas no Brasil', 'Lojas online no Brasil', 'Importado da China', 'Importado sem ser da China'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5],
+        borderWidth: 1,
+        backgroundColor: ['#1BF7F7', '#333480', '#2955A1', '#287BBA']
+      }]
+    },
+    options: {
+  
+    }
+  });
+
+  const ctx4 = document.getElementById('grafico4');
+
+  new Chart(ctx4, {
+    type: 'doughnut',
+    data: {
+      labels: ['Preço', 'Variedade de switches/keycaps', 'Qualidade ou marcas específicas', 'Curiosidade/coleção'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5],
+        borderWidth: 1,
+        backgroundColor: ['#1BF7F7', '#333480', '#2955A1', '#287BBA']
+      }]
+    },
+    options: {
+     
+    }
+  });
 </script>

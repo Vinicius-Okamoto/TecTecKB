@@ -4,8 +4,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background-color: navy; */
-  /* background-color: navy; */
   background-image: radial-gradient(circle, navy, black);
 }
 
@@ -23,12 +21,25 @@ body {
   margin: auto;
 }
 
+.container2 {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  background-image: radial-gradient(circle, navy, black);
+}
+
 .header {
   height: var(--tamanho-header);
   border-bottom: 2px solid blue;
 }
 
 .header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.header .container2 {
   justify-content: space-between;
   align-items: center;
   height: 100%;
@@ -288,7 +299,7 @@ body {
 
 .formulario .tipo_campo {
   font-size: 20px;
-  font-weight: 600 !important;
+  font-weight: 600;
 }
 
 .formulario {

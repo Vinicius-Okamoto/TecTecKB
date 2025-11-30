@@ -49,30 +49,26 @@
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <!-- <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div> -->
           <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
+          <div class="erro" id="nomeerro"></div>
           <div class="campo">
             <span>E-mail:</span>
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
+          <div class="erro" id="emailerro"></div>
           <div class="campo">
             <span>Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
+          <div class="erro" id="senha1erro"></div>
           <div class="campo">
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
+          <div class="erro" id="senha2erro"></div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
@@ -110,13 +106,11 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-
-    // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
+      nomeVar.trim() == "" ||
+      emailVar.trim() == "" ||
+      senhaVar.trim() == "" ||
+      confirmacaoSenhaVar.trim() == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -124,20 +118,30 @@
 
       finalizarAguardar();
       return false;
+    } else if (nomeVar.length < 2) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Insira um nome com pelo menos duas letras)";
+
+      finalizarAguardar();
+      return false;
+    } else if (emailVar.indexOf('@') < 0) {
+        cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(No email é necessário ter um @)";
+
+      finalizarAguardar();
+      return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
 
-
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar
