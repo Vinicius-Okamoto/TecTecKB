@@ -21,7 +21,7 @@ function autenticar(req, res) {
                         // res.status(200).json({mensagem:'Login Efetuado com sucesso', resultadoAutenticar});
                         
                         res.json({
-                            id: resultadoAutenticar[0].id,
+                            id: resultadoAutenticar[0].idUsuario,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
                             // senha: resultadoAutenticar[0].senha,

@@ -23,7 +23,7 @@ function validar() {
         trocar()
         iptTexto5.value = ''
         pontos++
-        DivMsgPontos.innerHTML = pontos
+        DivMsgPontos.innerHTML = pontos/5 * 100 + '% 🡺 ' + pontos 
     } else {
         alert('Que pena, você digitou incorretamente, tente novamente.')
     }

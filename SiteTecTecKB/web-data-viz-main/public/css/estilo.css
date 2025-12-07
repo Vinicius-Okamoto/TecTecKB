@@ -83,6 +83,11 @@ body {
   background-size: cover;
 }
 
+.banner img {
+  width: 100%;
+}
+
+
 .banner .container {
   justify-content: center;
   align-items: center;

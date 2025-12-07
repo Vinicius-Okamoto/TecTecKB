@@ -36,7 +36,6 @@
         <a href="./Formulario.html">
           <h3>Formulário</h3>
         </a>
-
       </div>
 
       <div class="btn-logout" onclick="limparSessao()">
@@ -50,7 +49,19 @@
       <div class="btns-dash">
 
         <div class="kpi">
-          <p id="mediaIdade">kpi</p>
+          <div class="kpiCollum"><p id="mediaIdade">kpi</p></div>
+          <div class="kpiCollum"><p id="resp1">resp1</p></div>
+          <div class="kpiCollum"><p id="resp2">resp2</p></div>
+        </div>
+        <div class="kpi">
+          <div class="kpiCollum"><p id="resp3">resp3</p></div>
+          <div class="kpiCollum"><p id="resp4">resp4</p></div>
+          <div class="kpiCollum"><p id="resp5">resp5</p></div>
+        </div>
+        <div class="kpi">
+          <div class="kpiCollum"><p id="resp6">resp6</p></div>
+          <div class="kpiCollum"><p id="resp7">resp7</p></div>
+          <div class="kpiCollum"><p id="resp8">resp8</p></div>
         </div>
       </div>
 
@@ -62,7 +73,7 @@
           </div>
         </div>
 
-        <div class="container-graficos">
+        <!-- <div class="container-graficos">
 
           <div class="containerRespostasColuna">
             <div class="containerRespostas">
@@ -87,7 +98,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -98,11 +109,17 @@
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-  // window.onload = obterDados;
-  // window.onload = mostrarKpi();
   window.onload = function () {
     obterDados();
     mostrarKpi();
+    mostrarkpiresp1();
+    mostrarkpiresp2();
+    mostrarkpiresp3();
+    mostrarkpiresp4();
+    mostrarkpiresp5();
+    mostrarkpiresp6();
+    mostrarkpiresp7();
+    mostrarkpiresp8();
   }
 
   function mostrarKpi() {
@@ -117,6 +134,21 @@
       })
       .catch(function (error) {
         console.error("Erro na hora de carregar kpi:", error);
+      });
+  }
+
+  function mostrarkpiresp1() {
+    fetch('/Dashboard/kpiresp1')
+      .then(function (mostrarkpiresp1) {
+        return mostrarkpiresp1.json();
+      })
+      .then(function (data) {
+        const resp1 = data[0].resposta1;
+        document.getElementById("resp1").innerHTML =
+          `Som preferido: <b>${resp1}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp1:", error);
       });
   }
 
@@ -167,7 +199,15 @@
         }]
       },
       options: {
-    
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff',
+            font: {
+              size: 16}
+          }
+        }
+      }
       }
     });
   }
@@ -189,10 +229,15 @@
     },
     options: {  
       plugin: {
-        title: {
-                display: true,
-                text: 'Custom Chart Title',
-            }
+        plugins: {
+        legend: {
+          labels: {
+            color: '#fff',
+            font: {
+              size: 16}
+          }
+        }
+      }
       }
     }
   });
@@ -211,7 +256,15 @@
       }]
     },
     options: {
-
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff',
+            font: {
+              size: 16}
+          }
+        }
+      }
     }
   });
 
@@ -229,7 +282,15 @@ const ctx3 = document.getElementById('grafico3');
       }]
     },
     options: {
-  
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff',
+            font: {
+              size: 16}
+          }
+        }
+      }
     }
   });
 
@@ -247,7 +308,15 @@ const ctx3 = document.getElementById('grafico3');
       }]
     },
     options: {
-     
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff',
+            font: {
+              size: 16}
+          }
+        }
+      }
     }
   });
 </script>
