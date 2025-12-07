@@ -58,21 +58,16 @@
             <div class="formulariotxt">
 
               <h2>MyKeyboard</h2>
-              Teclado: <input type="text" id="iptIdade"> Preço: <input type="number" id="preco1"><br>
-              Switch:
-              Keycaps: <input type="text" id="keycaps">Quantidade: <input type="number" id="qtdkeycaps">  
-
+              Teclado: <input type="text" id="teclado"> Preço: <input type="number" id="preco1"> <br><br>
+              Switch: <input type="text" id="switch1"> Quantidade: <input type="number" id="qtdswitch"> Preço: <input type="number" id="preco2"> <br><br>
+              Keycaps: <input type="text" id="keycaps"> Preço: <input type="number" id="preco3"> <br><br>
               <br><br>
-
-              <br>
-              <button class="botao" onclick="enviar()">Enviar</button>
+              <button class="botao" onclick="gerartxt()">gerar texto</button>
               <br><br>
               <div id="DivMsg"></div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="graficos">
       </div>
     </div>
   </div>
@@ -83,6 +78,18 @@
 
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  function gerartxt() {
+    let prec1 = Number(preco1.value)
+    let prec2 = Number(preco2.value)
+    let prec3 = Number(preco3.value)
+    DivMsg.innerHTML = `
+    <br>Teclado: ${teclado.value} - Preço: ${prec1 }
+    <br>Switch: ${switch1.value} - ${qtdswitch.value}X Preço:  ${(preco2.value * qtdswitch.value)}
+    <br>Keycaps: ${keycaps.value} - Preço: ${preco3.value}
+    <br>
+    <br>Valor Total: ${(prec1 + (prec2 * qtdswitch.value) + prec3)}
+    `
+  }
   
 </script>
 
