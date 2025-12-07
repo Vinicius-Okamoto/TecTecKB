@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário</title>
+
+  <link rel="stylesheet" href="./../css/estiloFormulario.css">
+  <link rel="icon" href="./assets/icon/TecTecKB-icone.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <script src="../js/sessao.js"></script>
+  <script src="../js/alerta.js"></script>
+</head>
+
+<body onload="validarSessao()" style="background-color: #161618;">
+
+  <div class="janela">
+    <div class="header-left">
+      <h1>TecTecKB</h1>
+
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      </div>
+
+      <div class="btn-nav-white">
+        <a href="./grafico.html">
+          <h3>Gráficos</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav-white">
+        <a href="./Formulario.html">
+          <h3>Formulário</h3>
+        </a>
+      </div>
+
+      <div class="btn-nav">
+        <a href="./MyKeyboard.html">
+          <h3>MyKeyboard</h3>
+        </a>
+      </div>
+
+      <div class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+      </div>
+
+    </div>
+
+    <div class="dash">
+      <div id="alerta">
+      </div>
+
+      <div class="btns-dash" id="btnAquario">
+        <div class="container">
+          <div class="caixa">
+            <div class="formulariotxt">
+
+              <h2>MyKeyboard</h2>
+              Teclado: <input type="text" id="iptIdade"> Preço: <input type="number" id="preco1"><br>
+              Switch:
+              Keycaps: <input type="text" id="keycaps">Quantidade: <input type="number" id="qtdkeycaps">  
+
+              <br><br>
+
+              <br>
+              <button class="botao" onclick="enviar()">Enviar</button>
+              <br><br>
+              <div id="DivMsg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="graficos">
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  
+</script>
+
+</html>
