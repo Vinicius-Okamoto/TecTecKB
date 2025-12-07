@@ -130,7 +130,7 @@
       .then(function (data) {
         const media = Number(data[0].mediaIdade);
         document.getElementById("mediaIdade").innerHTML =
-          `Idade média: <b>${media.toFixed(1)}</b>`;
+          `Idade média:<br> <b>${media.toFixed(1)}</b>`;
       })
       .catch(function (error) {
         console.error("Erro na hora de carregar kpi:", error);
@@ -145,10 +145,115 @@
       .then(function (data) {
         const resp1 = data[0].resposta1;
         document.getElementById("resp1").innerHTML =
-          `Som preferido: <b>${resp1}</b>`;
+          `Som preferido:<br> <b>${resp1}</b>`;
       })
       .catch(function (error) {
         console.error("Erro na hora de carregar kpiresp1:", error);
+      });
+  }
+
+    function mostrarkpiresp2() {
+    fetch('/Dashboard/kpiresp2')
+      .then(function (mostrarkpiresp2) {
+        return mostrarkpiresp2.json();
+      })
+      .then(function (data) {
+        const resp2 = data[0].resposta2;
+        document.getElementById("resp2").innerHTML =
+          `Som preferido:<br> <b>${resp2}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp2:", error);
+      });
+  }
+
+  function mostrarkpiresp3() {
+    fetch('/Dashboard/kpiresp3')
+      .then(function (mostrarkpiresp3) {
+        return mostrarkpiresp3.json();
+      })
+      .then(function (data) {
+        const resp3 = data[0].resposta3;
+        document.getElementById("resp3").innerHTML =
+          `Som preferido:<br> <b>${resp3}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp3:", error);
+      });
+  }
+
+  function mostrarkpiresp4() {
+    fetch('/Dashboard/kpiresp4')
+      .then(function (mostrarkpiresp4) {
+        return mostrarkpiresp4.json();
+      })
+      .then(function (data) {
+        const resp4 = data[0].resposta4;
+        document.getElementById("resp4").innerHTML =
+          `Som preferido:<br> <b>${resp4}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp4:", error);
+      });
+  }
+
+  function mostrarkpiresp5() {
+    fetch('/Dashboard/kpiresp5')
+      .then(function (mostrarkpiresp5) {
+        return mostrarkpiresp5.json();
+      })
+      .then(function (data) {
+        const resp5 = data[0].resposta5;
+        document.getElementById("resp5").innerHTML =
+          `Som preferido:<br> <b>${resp5}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp5:", error);
+      });
+  }
+
+  function mostrarkpiresp6() {
+    fetch('/Dashboard/kpiresp6')
+      .then(function (mostrarkpiresp6) {
+        return mostrarkpiresp6.json();
+      })
+      .then(function (data) {
+        const resp6 = data[0].resposta6;
+        document.getElementById("resp6").innerHTML =
+          `Som preferido:<br> <b>${resp6}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp6:", error);
+      });
+  }
+
+  function mostrarkpiresp7() {
+    fetch('/Dashboard/kpiresp7')
+      .then(function (mostrarkpiresp7) {
+        return mostrarkpiresp7.json();
+      })
+      .then(function (data) {
+        const resp7 = data[0].resposta7;
+        document.getElementById("resp7").innerHTML =
+          `Som preferido:<br> <b>${resp7}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp7:", error);
+      });
+  }
+
+  function mostrarkpiresp8() {
+    fetch('/Dashboard/kpiresp8')
+      .then(function (mostrarkpiresp8) {
+        return mostrarkpiresp8.json();
+      })
+      .then(function (data) {
+        const resp8 = data[0].resposta8;
+        document.getElementById("resp8").innerHTML =
+          `Som preferido:<br> <b>${resp8}</b>`;
+      })
+      .catch(function (error) {
+        console.error("Erro na hora de carregar kpiresp8:", error);
       });
   }
 
